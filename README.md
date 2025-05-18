@@ -127,5 +127,6 @@ docker run --rm -v "C:\путь\к\проекту\src\logs:/app/logs" transactio
 [2025-05-11 10:00:31] user002 balance inquiry 210.00
 [2025-05-18 08:00:40] user002 final balance 480.00
 ```
+...
 
 ```
