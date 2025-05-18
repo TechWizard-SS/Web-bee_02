@@ -75,18 +75,57 @@ docker run --rm -v "C:\путь\к\проекту\src\logs:/app/logs" transactio
 
 ## 🛠 Пример использования
 
-Исходные логи (`src/logs/log1.log`):
-
+Исходные логи 
+(`src/logs/log1.log`):
 ```
 [2025-05-10 09:00:22] user001 balance inquiry 1000.00
 [2025-05-10 09:05:44] user001 transferred 100.00 to user002
+[2025-05-10 09:06:00] user001 transferred 120.00 to user002
+[2025-05-10 10:30:55] user005 transferred 10.00 to user003
+[2025-05-10 11:09:01] user001 transferred 235.54 to user004
+[2025-05-10 12:38:31] user003 transferred 150.00 to user002
+[2025-05-11 10:00:31] user002 balance inquiry 210.00
 ```
 
-Результат обработки (`src/logs/transactions_by_users/user001.log`):
+(`src/logs/log2.log`):
+```
+[2025-05-10 10:03:23] user002 transferred 990.00 to user001
+[2025-05-10 10:15:56] user002 balance inquiry 110.00
+[2025-05-10 10:25:43] user003 transferred 120.00 to user002
+[2025-05-10 11:00:03] user001 balance inquiry 1770
+[2025-05-10 11:01:12] user001 transferred 102.00 to user003
+[2025-05-10 17:04:09] user001 transferred 235.54 to user004
+[2025-05-10 23:45:32] user003 transferred 150.00 to user002
+[2025-05-10 23:55:32] user002 withdrew 50
+```
 
+Результат обработки 
+
+(`src/logs/transactions_by_users/user001.log`):
 ```
-[2025-05-10 09:00:22] user001 BALANCE_INQUIRY 1000.00
-[2025-05-10 09:05:44] user001 TRANSFERRED 100.00 to user002
-[2025-05-10 09:05:44] user001 final balance 900.00
+[2025-05-10 09:00:22] user001 balance inquiry 1000.00
+[2025-05-10 09:05:44] user001 transferred 100.00 to user002
+[2025-05-10 09:06:00] user001 transferred 120.00 to user002
+[2025-05-10 10:03:23] user001 received 990.00 from user002
+[2025-05-10 11:00:03] user001 balance inquiry 1770
+[2025-05-10 11:01:12] user001 transferred 102.00 to user003
+[2025-05-10 11:09:01] user001 transferred 235.54 to user004
+[2025-05-10 17:04:09] user001 transferred 235.54 to user004
+[2025-05-18 08:00:40] user001 final balance 1196.92
 ```
+
+(`src/logs/transactions_by_users/user002.log`):
+```
+[2025-05-10 09:05:44] user002 received 100.00 from user001
+[2025-05-10 09:06:00] user002 received 120.00 from user001
+[2025-05-10 10:03:23] user002 transferred 990.00 to user001
+[2025-05-10 10:15:56] user002 balance inquiry 110.00
+[2025-05-10 10:25:43] user002 received 120.00 from user003
+[2025-05-10 12:38:31] user002 received 150.00 from user003
+[2025-05-10 23:45:32] user002 received 150.00 from user003
+[2025-05-10 23:55:32] user002 withdrew 50
+[2025-05-11 10:00:31] user002 balance inquiry 210.00
+[2025-05-18 08:00:40] user002 final balance 480.00
+```
+
 ```
