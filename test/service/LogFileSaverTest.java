@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LogFileSaverTest {
     private final LogFileSaver saver = new LogFileSaver();
 
-    @Test
+    @Test        // Проверяем, что для каждого пользователя создается свой лог-файл и он содержит записи
     public void testSaveFilesWithDifferentUsers(@TempDir Path tempDir) throws IOException {
         // Подготовка данных
         List<LogEntry> user1Logs = Arrays.asList(
@@ -50,7 +50,7 @@ class LogFileSaverTest {
         );
     }
 
-    @Test
+    @Test       // Проверяем, что лог-файл создается даже при отсутствии операций (только финальный баланс)
     public void testEmptyLogList(@TempDir Path tempDir) throws IOException {
         // Выполнение с пустым списком
         saver.saveUserLogs(Map.of("emptyUser", Collections.emptyList()), tempDir);

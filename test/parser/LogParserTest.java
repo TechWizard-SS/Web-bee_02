@@ -15,7 +15,8 @@ public class LogParserTest{
     private final String TEST_LINE_BALANCE =
             "[2025-05-10 09:00:22] user005 balance inquiry 1500.00";
 
-    @Test
+    @Test       // Проверяем парсинг строки с операцией перевода денег
+
     public void testTransferParsing() {
         String TEST_LINE_TRANSFER = "[2025-05-10 09:05:44] user001 transferred 100.50 to user002";
         LogEntry entry = LogParser.parse(TEST_LINE_TRANSFER);
@@ -27,7 +28,8 @@ public class LogParserTest{
         );
     }
 
-    @Test
+    @Test       // Проверяем парсинг строки с операцией снятия средств
+
     public void testWithdrawParsing() {
         LogEntry entry = LogParser.parse(TEST_LINE_WITHDRAW);
         assertAll(
@@ -37,7 +39,7 @@ public class LogParserTest{
         );
     }
 
-    @Test
+    @Test       // Проверяем парсинг строки с операцией запроса баланса
     public void testBalanceInquiryParsing() {
         LogEntry entry = LogParser.parse(TEST_LINE_BALANCE);
         assertAll(
@@ -48,7 +50,7 @@ public class LogParserTest{
         );
     }
 
-    @Test
+    @Test       // Проверяем, что при некорректной строке возникает исключение
     void testInvalidLineThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             LogParser.parse("invalid log line");

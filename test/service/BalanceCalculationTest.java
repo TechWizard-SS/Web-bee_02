@@ -13,9 +13,8 @@ public class BalanceCalculationTest {
 
     private final LogFileSaver saver = new LogFileSaver();
 
-    @Test
+    @Test       // Проверяем корректность расчета баланса на основе журнала операций
     public void testBalanceCalculation() {
-
 
         List<LogEntry> logs = Arrays.asList(
                 createLog("balance inquiry", 1000.0),

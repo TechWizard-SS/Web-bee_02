@@ -72,3 +72,4 @@ public class LogService {
         logFileSaver.saveUserLogs(userLogs, rootDir);
     }
 }
+
