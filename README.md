@@ -27,22 +27,16 @@
 # Компиляция проекта
 javac -d out src/main/Main.java src/model/LogEntry.java src/service/LogService.java src/service/LogFileSaver.java src/parser/LogParser.java src/util/FileUtils.java
 
-# Запуск
-java -cp out main.Main "src/logs"
+java -cp out main.Main "logs"
 ```
 
 
 ### 🐳 Docker-сборка и запуск
 
 ```bash
-# Сборка Docker-образа
-docker build -t transaction-processor .
+docker build -t web-bee_project .
 
-# Запуск контейнера (Linux/macOS)
-docker run --rm -v "$(pwd)/src/logs:/app/logs" transaction-processor
-
-# Запуск контейнера (Windows, PowerShell)
-docker run --rm -v "C:\путь\к\проекту\src\logs:/app/logs" transaction-processor
+docker run --rm -v "C:\Users\Samir\Desktop\YLab\Web-bee_2:/app" web-bee_project
 ```
 
 ## 🧪 Тестирование
@@ -60,12 +54,13 @@ docker run --rm -v "C:\путь\к\проекту\src\logs:/app/logs" transactio
 
 ```
 ├── src/
-│   ├── logs/              # Примеры логов
 │   ├── main/              # Главный класс Main.java
 │   ├── model/             # Модели данных (LogEntry)
 │   ├── parser/            # Парсеры логов
 │   ├── service/           # Бизнес-логика
 │   └── util/              # Вспомогательные классы
+├── logs/                  # Примеры логов
+├── transactions_by_users/ # Папка куда будут сохраняться наши результаты
 ├── test/                  # Unit-тесты (JUnit 5)
 │   ├── parser/
 │   └── service/
@@ -76,7 +71,7 @@ docker run --rm -v "C:\путь\к\проекту\src\logs:/app/logs" transactio
 ## 🛠 Пример использования
 
 Исходные логи 
-(`src/logs/log1.log`):
+(`logs/log1.log`):
 ```
 [2025-05-10 09:00:22] user001 balance inquiry 1000.00
 [2025-05-10 09:05:44] user001 transferred 100.00 to user002
@@ -101,7 +96,7 @@ docker run --rm -v "C:\путь\к\проекту\src\logs:/app/logs" transactio
 
 Результат обработки 
 
-(`src/logs/transactions_by_users/user001.log`):
+(`transactions_by_users/user001.log`):
 ```
 [2025-05-10 09:00:22] user001 balance inquiry 1000.00
 [2025-05-10 09:05:44] user001 transferred 100.00 to user002
@@ -114,7 +109,7 @@ docker run --rm -v "C:\путь\к\проекту\src\logs:/app/logs" transactio
 [2025-05-18 08:00:40] user001 final balance 1196.92
 ```
 
-(`src/logs/transactions_by_users/user002.log`):
+(`transactions_by_users/user002.log`):
 ```
 [2025-05-10 09:05:44] user002 received 100.00 from user001
 [2025-05-10 09:06:00] user002 received 120.00 from user001
