@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -33,7 +34,7 @@ public class LogFileSaver {
      */
     public void saveUserLogs(Map<String, List<LogEntry>> userLogs, Path rootDir) throws IOException {
         // Создаем целевую директорию если не существует
-        Path outputDir = rootDir.resolve("transactions_by_users");
+        Path outputDir = Paths.get("transactions_by_users");
         if (!Files.exists(outputDir)) {
             Files.createDirectories(outputDir);
         }
