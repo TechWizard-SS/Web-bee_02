@@ -123,7 +123,3 @@ docker run --rm -v "C:\Users\Samir\Desktop\YLab\Web-bee_2:/app" web-bee_project
 [2025-05-18 08:00:40] user002 final balance 480.00
 ```
 ...
-
-# Важно!!!
-## Примечание: 
-Директория transactions_by_users должна быть пуста, иначе произойдёт ошибка. Если у вас нет этой директории, то она автоматически создастся.
